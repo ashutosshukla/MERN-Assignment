@@ -1,16 +1,14 @@
 import User from '../models/userModel.js';
 import jwt from 'jsonwebtoken';
 
-// Generate JWT Token
+
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
         expiresIn: '30d'
     });
 };
 
-// @desc    Register new user
-// @route   POST /api/users/register
-// @access  Public
+
 export const registerUser = async (req, res) => {
     try {
         const { name, email, password } = req.body;
@@ -40,9 +38,7 @@ export const registerUser = async (req, res) => {
     }
 };
 
-// @desc    Auth user & get token
-// @route   POST /api/users/login
-// @access  Public
+
 export const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -66,9 +62,7 @@ export const loginUser = async (req, res) => {
     }
 };
 
-// @desc    Get user profile
-// @route   GET /api/users/profile
-// @access  Private
+
 export const getUserProfile = async (req, res) => {
     try {
         const user = await User.findById(req.user._id);

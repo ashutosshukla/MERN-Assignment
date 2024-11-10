@@ -10,19 +10,18 @@ dotenv.config();
 
 const app = express();
 
-// Connect to MongoDB
 connectDB();
 
-// Middleware
+
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 app.use('/uploads', express.static('uploads'));
 
-// Routes
+
 app.use('/api/users', userRoutes);
 app.use('/api/employees', employeeRoutes);
-// Error handling middleware
+
 app.use((err, req, res, next) => {
     const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
     res.status(statusCode);

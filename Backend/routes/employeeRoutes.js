@@ -4,7 +4,7 @@ import upload from '../middleware/upload.js';
 
 const router = express.Router();
 
-// Routes
+
 router.get('/', getEmployees);
 router.post('/', upload.single('image'), createEmployee);
 router.get('/:id', getEmployeeById);

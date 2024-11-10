@@ -1,6 +1,6 @@
 import Employee from '../models/employeeModel.js'
 
-// Create new employee
+
 export const createEmployee = async (req, res) => {
     console.log(("create employee is called"));
     
@@ -29,19 +29,19 @@ export const createEmployee = async (req, res) => {
   }
 };
 
-// Get all employees
+
 
 export const getEmployees = async (req, res) => {
     try {
       const employees = await Employee.find();
   
-      // Normalize the image paths to use forward slashes
+
       const employeesWithNormalizedPaths = employees.map(employee => {
-        employee.image = employee.image.replace(/\\/g, '/'); // Replace backslashes with forward slashes
+        employee.image = employee.image.replace(/\\/g, '/'); 
         return employee;
       });
   
-      res.status(200).json(employeesWithNormalizedPaths); // Return employees with normalized paths
+      res.status(200).json(employeesWithNormalizedPaths);
     } catch (error) {
       console.error('Error fetching employees:', error.message);
       res.status(500).json({ message: 'Error fetching employees', error: error.message });
@@ -49,7 +49,6 @@ export const getEmployees = async (req, res) => {
   };
   
 
-// Get employee by ID
 export const getEmployeeById = async (req, res) => {
   const { id } = req.params;
   try {
@@ -63,7 +62,7 @@ export const getEmployeeById = async (req, res) => {
   }
 };
 
-// Update employee
+
 export const updateEmployee = async (req, res) => {
   const { id } = req.params;
   const { name, email, mobile, designation, gender, course } = req.body;
@@ -90,13 +89,12 @@ export const updateEmployee = async (req, res) => {
   }
 };
 
-// Delete employee
+
 export const deleteEmployee = async (req, res) => {
     console.log("delete is called", req.params);
 
     const { id } = req.params;
     try {
-        // Attempt to delete the employee by ID
         const result = await Employee.findByIdAndDelete(id);
 
         if (!result) {
